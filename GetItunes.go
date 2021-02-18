@@ -29,5 +29,5 @@ func GetItunes(query string) string {
 
 	encjson, _ := json.Marshal(response.Results)
 
-	return string(encjson)
+	return encjson
 }
