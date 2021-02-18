@@ -12,7 +12,7 @@ type Response struct {
 	Results []map[string]string
 }
 
-func GetItunes(query string) string {
+func GetItunes(query string) []byte {
 	res, err := http.Get("https://itunes.apple.com/search?term=" + query)
 	if err != nil {
 		log.Fatal(err)
