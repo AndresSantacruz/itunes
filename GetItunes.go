@@ -2,7 +2,6 @@ package itunes
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -13,7 +12,7 @@ type Response struct {
 	Results []map[string]string
 }
 
-func GetItunes(query string)  {
+func GetItunes(query string) string {
 	res, err := http.Get("https://itunes.apple.com/search?term=" + query)
 	if err != nil {
 		log.Fatal(err)
@@ -25,12 +24,10 @@ func GetItunes(query string)  {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("%s", data)
-
 	var response Response
 	json.Unmarshal(data, &response)
 
 	encjson, _ := json.Marshal(response.Results)
 
-	fmt.Println(string(encjson))
+	return string(encjson)
 }
